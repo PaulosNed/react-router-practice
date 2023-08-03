@@ -1,0 +1,24 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "new edited name",
+      "phone_number": "+251912345678"
+    },
+    {
+      "id": 2,
+      "name": "Abebe belete",
+      "phone_number": "+251912345678"
+    },
+    {
+      "id": 3,
+      "name": "Gemeches Adiyola",
+      "phone_number": "+251912345678"
+    },
+    {
+      "id": 1691068864287,
+      "name": "czxc",
+      "phone_number": "+251947505994"
+    }
+  ]
+}

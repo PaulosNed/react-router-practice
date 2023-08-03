@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import "./App.css";
+import { AppLayout } from "./layouts/AppLayout";
+import { Home } from "./pages/Home";
+import { ContactDetail } from "./pages/ContactDetail";
+import { EditContact } from "./pages/EditContact";
+import { AddContact } from "./pages/AddContact";
+import { contactsLoader } from "./loaders/ContactsLoader";
+import { singleContactLoader } from "./loaders/SingleContactLoader";
+import { contactAction, editContactAction } from "./actions/ContactAction";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<Home />}  loader={contactsLoader}/>
+        <Route path="contacts/:id" element={<ContactDetail />} loader={singleContactLoader}/>
+        <Route path="edit/:id" element={<EditContact />}  loader={singleContactLoader} action={editContactAction}/>
+        <Route path="add" element={<AddContact />} action={contactAction}/>
+      </Route>
+    )
   );
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
